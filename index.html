@@ -3,32 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f6f8">
+  <meta name="theme-color" content="#f7f4ec">
   <meta name="description" content="KoiChemが公開している化学学習・授業向けWebアプリの紹介ページです。">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23086b70'/%3E%3Cpath d='M10 22h20' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%231f3a75'/%3E%3Cpath d='M10 22h20' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
   <title>KoiChem Web Apps | 化学学習・授業向けWebアプリ</title>
   <style>
     :root {
       color-scheme: light;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
-      color: #182c3b;
-      background: #f3f6f8;
-      --ink: #182c3b;
-      --muted: #5c6c78;
-      --line: #d9e2e7;
-      --paper: #ffffff;
-      --accent: #087e83;
-      --accent-dark: #086b70;
-      --accent-pale: #e4f3f2;
-      --shadow: 0 10px 28px rgb(24 44 59 / 7%);
+      color: #1e2a38;
+      background: #f7f4ec;
+      --ink: #1e2a38;
+      --muted: #5d6874;
+      --line: #e1dbcc;
+      --paper: #fffefb;
+      --accent: #2a4d9b;
+      --accent-dark: #1f3a75;
+      --accent-pale: #e3eaf7;
+      --shadow: 0 10px 28px rgb(30 42 56 / 8%);
     }
     * { box-sizing: border-box; }
     body {
       min-width: 320px;
       margin: 0;
       background:
-        radial-gradient(ellipse at 10% 0%, rgb(8 126 131 / 9%), transparent 34rem),
-        #f3f6f8;
+        radial-gradient(ellipse at 10% 0%, rgb(42 77 155 / 8%), transparent 34rem),
+        #f7f4ec;
     }
     .page { width: min(1160px, 100% - 40px); margin: 0 auto; padding: 42px 0 64px; }
     .masthead {
@@ -47,7 +47,7 @@
       background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
       box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
     }
-    .card-main { display: block; width: 100%; padding: 0; border: 0; background: #eef3f4; cursor: zoom-in; }
+    .card-main { display: block; width: 100%; padding: 0; border: 0; background: #efe9dd; cursor: zoom-in; }
     .card-main img { display: block; width: 100%; aspect-ratio: 8 / 5; object-fit: cover; object-position: top center; }
     .thumbs { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px 0; margin: 0; list-style: none; }
     .thumbs li { flex: 1 1 0; min-width: 52px; max-width: 84px; }
@@ -69,19 +69,19 @@
     }
     .btn-open { background: var(--accent-dark); color: #fff; }
     .btn-open:hover { background: var(--accent); }
-    .btn-gh { border: 1px solid #c9d7dc; color: #344b59; background: #fff; }
+    .btn-gh { border: 1px solid #d8d2c0; color: #3a4656; background: #fff; }
     .btn-gh:hover { border-color: var(--accent); }
     :focus-visible { outline: 3px solid #e6a83d; outline-offset: 3px; }
     footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.8; }
     footer a { color: var(--accent-dark); }
     dialog#lightbox { border: 0; border-radius: 14px; padding: 14px; max-width: min(1060px, 94vw); background: #fff; }
-    dialog#lightbox::backdrop { background: rgb(10 25 35 / 72%); }
+    dialog#lightbox::backdrop { background: rgb(18 24 36 / 72%); }
     dialog#lightbox img { display: block; width: 100%; height: auto; border-radius: 8px; }
     .lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
     .lb-title { font-weight: 750; font-size: 14px; }
     .lb-nav { display: flex; gap: 8px; }
     .lb-nav button {
-      min-width: 44px; min-height: 40px; padding: 6px 14px; border: 1px solid #c9d7dc; border-radius: 9px;
+      min-width: 44px; min-height: 40px; padding: 6px 14px; border: 1px solid #d8d2c0; border-radius: 9px;
       background: #fff; font-weight: 700; cursor: pointer;
     }
   </style>
