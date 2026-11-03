@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f6f8">
+  <meta name="description" content="KoiChemが公開している化学学習・授業向けWebアプリの紹介ページです。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23086b70'/%3E%3Cpath d='M10 22h20' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <title>KoiChem Web Apps | 化学学習・授業向けWebアプリ</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+      color: #182c3b;
+      background: #f3f6f8;
+      --ink: #182c3b;
+      --muted: #5c6c78;
+      --line: #d9e2e7;
+      --paper: #ffffff;
+      --accent: #087e83;
+      --accent-dark: #086b70;
+      --accent-pale: #e4f3f2;
+      --shadow: 0 10px 28px rgb(24 44 59 / 7%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 10% 0%, rgb(8 126 131 / 9%), transparent 34rem),
+        #f3f6f8;
+    }
+    .page { width: min(1160px, 100% - 40px); margin: 0 auto; padding: 42px 0 64px; }
+    .masthead {
+      display: flex; align-items: center; gap: 16px; margin: 6px 0 8px;
+      color: var(--accent-dark); font-size: clamp(30px, 4.4vw, 44px); font-weight: 800;
+      letter-spacing: .06em; text-transform: uppercase; line-height: 1.2;
+    }
+    .masthead::before { width: 40px; height: 5px; border-radius: 3px; background: var(--accent); content: ""; flex: 0 0 auto; }
+    .group { margin-top: 40px; }
+    .group-heading { display: flex; align-items: baseline; gap: 12px; margin: 0 0 14px; }
+    .group-number { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+    h2 { margin: 0; font-size: 19px; line-height: 1.4; }
+    .app-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+    @media (max-width: 820px) { .app-grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+      box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+    }
+    .card-main { display: block; width: 100%; padding: 0; border: 0; background: #eef3f4; cursor: zoom-in; }
+    .card-main img { display: block; width: 100%; aspect-ratio: 8 / 5; object-fit: cover; object-position: top center; }
+    .thumbs { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px 0; margin: 0; list-style: none; }
+    .thumbs li { flex: 1 1 0; min-width: 52px; max-width: 84px; }
+    .thumbs button {
+      padding: 0; border: 2px solid transparent; border-radius: 8px; background: none; cursor: pointer;
+      width: 100%; display: block;
+    }
+    .thumbs button[aria-current="true"] { border-color: var(--accent); }
+    .thumbs img { display: block; width: 100%; aspect-ratio: 8 / 5; object-fit: cover; object-position: top center; border-radius: 6px; }
+    .card-body { padding: 12px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .card h3 { margin: 2px 0 0; font-size: 19px; line-height: 1.35; }
+    .card .desc { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .tags li { font-size: 12px; font-weight: 700; color: var(--accent-dark); background: var(--accent-pale); border-radius: 999px; padding: 3px 10px; }
+    .card-links { display: flex; gap: 10px; margin-top: auto; padding-top: 4px; }
+    .btn-open, .btn-gh {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 42px;
+      padding: 8px 18px; border-radius: 10px; font-weight: 750; text-decoration: none; font-size: 14px;
+    }
+    .btn-open { background: var(--accent-dark); color: #fff; }
+    .btn-open:hover { background: var(--accent); }
+    .btn-gh { border: 1px solid #c9d7dc; color: #344b59; background: #fff; }
+    .btn-gh:hover { border-color: var(--accent); }
+    :focus-visible { outline: 3px solid #e6a83d; outline-offset: 3px; }
+    footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.8; }
+    footer a { color: var(--accent-dark); }
+    dialog#lightbox { border: 0; border-radius: 14px; padding: 14px; max-width: min(1060px, 94vw); background: #fff; }
+    dialog#lightbox::backdrop { background: rgb(10 25 35 / 72%); }
+    dialog#lightbox img { display: block; width: 100%; height: auto; border-radius: 8px; }
+    .lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+    .lb-title { font-weight: 750; font-size: 14px; }
+    .lb-nav { display: flex; gap: 8px; }
+    .lb-nav button {
+      min-width: 44px; min-height: 40px; padding: 6px 14px; border: 1px solid #c9d7dc; border-radius: 9px;
+      background: #fff; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1 class="masthead">KoiChem Web Apps</h1>
+    </header>
+
+    <main id="app-list"></main>
+
+    <footer>
+      <p>作っている人：KoiChem（化学の教師）／ <a href="https://github.com/KoiChem">GitHub: KoiChem</a><br>
+      全アプリの一覧は <a href="https://koichem.github.io/Apps/">KoiChem アプリポータル</a> にあります。</p>
+    </footer>
+  </div>
+
+  <dialog id="lightbox" aria-labelledby="lb-title">
+    <img id="lb-img" alt="">
+    <div class="lb-bar">
+      <span class="lb-title" id="lb-title"></span>
+      <div class="lb-nav">
+        <button type="button" id="lb-prev">← 前へ</button>
+        <button type="button" id="lb-next">次へ →</button>
+        <button type="button" id="lb-close">閉じる</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const GROUPS = [
+      { title: '化学を学ぶ', apps: ['alkane', 'ionic', 'genkai', 'stereo', 'resonance', 'orgobingo', 'elementbingo'] },
+      { title: '授業を支える', apps: ['sekigae'] },
+      { title: '化学・教材ツール', apps: ['copype', 'pdfcrop'] },
+    ];
+
+    const APPS = {
+      alkane: {
+        name: 'アルカンパズル',
+        desc: '「並べる」と「名付ける」で、アルカン・シクロアルカン・アルコールの構造と命名を学習するパズル。原子のパーツをタップやスワイプで組み立てます。チュートリアル付き。',
+        tags: ['有機化学', '命名法', 'パズル'],
+        app: 'https://koichem.github.io/AlkanePuzzle/',
+        gh: 'https://github.com/KoiChem/AlkanePuzzle',
+        shots: [
+          ['assets/alkane-1.jpg', 'アルカンパズル「並べる」モードの画面'],
+          ['assets/alkane-2.jpg', 'アルカンパズル「名付ける」モードの画面'],
+          ['assets/alkane-3.jpg', 'アルカンパズルのチュートリアル画面'],
+          ['assets/alkane-4.jpg', 'アルカンパズルの命名ルール説明'],
+          ['assets/alkane-5.jpg', 'アルカンパズル「名付ける」の難しめの問題'],
+          ['assets/alkane-6.jpg', 'アルカンパズル「並べる」練習モードのお題'],
+        ],
+      },
+      ionic: {
+        name: 'IonicFormula',
+        desc: 'イオン式・イオン名と、イオン結合性化合物の組成式・名称を練習するアプリ。イオンモード／化合物モード、難易度（やさしめ・ややむず・錯のみ）と10問／エンドレス／苦手復習が選べます。錯イオンは初期状態ではOFFです。',
+        tags: ['化学基礎', 'イオン', '組成式', 'ドリル'],
+        app: 'https://koichem.github.io/IonicFormula/',
+        gh: 'https://github.com/KoiChem/IonicFormula',
+        shots: [
+          ['assets/ionic-1.jpg', 'IonicFormulaの出題設定画面'],
+          ['assets/ionic-2.jpg', 'IonicFormulaの問題画面'],
+          ['assets/ionic-3.jpg', 'IonicFormulaの化合物モード設定画面'],
+          ['assets/ionic-4.jpg', 'IonicFormulaのイオン名から式を答える問題'],
+          ['assets/ionic-5.jpg', 'IonicFormulaの入力チェック表示'],
+          ['assets/ionic-6.jpg', 'IonicFormulaの錯イオンのみ・エンドレス設定'],
+        ],
+      },
+      genkai: {
+        name: '限界半径比いじくるくん',
+        desc: '陽イオンと陰イオンの半径比をスライダーで変えながら、CsCl型・NaCl型・ZnS型の結晶格子の中で「接している・重なる・離れる」様子を3Dで確かめるシミュレータ。断面表示や不透明度の調整もできます。',
+        tags: ['結晶格子', '半径比', '3D'],
+        app: 'https://koichem.github.io/GenkaiHankeiHi/',
+        gh: 'https://github.com/KoiChem/GenkaiHankeiHi',
+        shots: [
+          ['assets/genkai-1.jpg', '限界半径比いじくるくんのNaCl型表示と設定パネル'],
+          ['assets/genkai-2.jpg', '限界半径比いじくるくんのCsCl型表示'],
+          ['assets/genkai-3.jpg', '限界半径比いじくるくんの全画面3D表示'],
+          ['assets/genkai-4.jpg', 'ZnS型の結晶格子'],
+          ['assets/genkai-5.jpg', '対角断面の表示'],
+          ['assets/genkai-6.jpg', '半径比が小さすぎて不安定な状態'],
+        ],
+      },
+      stereo: {
+        name: 'ステレオ分子くん（Molecule 3D Viewer）',
+        desc: '分子の名前を検索して3Dモデルを表示するビューア。教科書の中の分子が、指先で回せる「立体」になります。裸眼立体視（ステレオ表示）で立体構造を見ることができ、表示スタイルも球棒モデル／空間充填モデルなどに切り替えられます。構造データはPubChemから取得します。',
+        tags: ['分子模型', '3D', '立体視'],
+        app: 'https://koichem.github.io/StereoMolecule/',
+        gh: 'https://github.com/KoiChem/StereoMolecule',
+        shots: [
+          ['assets/stereo-1.jpg', 'ステレオ分子くんの立体視表示（L-システイン、球棒モデル）'],
+          ['assets/stereo-2.jpg', 'ステレオ分子くんの使い方ガイド'],
+          ['assets/stereo-3.jpg', 'ステレオ分子くんの空間充填モデル表示'],
+          ['assets/stereo-4.jpg', 'ハイブリッド表示の分子モデル'],
+          ['assets/stereo-5.jpg', '背景を変えた表示'],
+          ['assets/stereo-6.jpg', '使い方ガイドの続き'],
+        ],
+      },
+      resonance: {
+        name: 'ベンゼン共鳴構造くん',
+        desc: 'ベンゼンの2つのケクレ構造が交互に切り替わる様子をアニメーションで表示。切り替えの速さ（Hz）を変えたり、二重結合を円で表す表記に切り替えたりして、共鳴のイメージをつかみます。',
+        tags: ['有機化学', 'ベンゼン', '共鳴'],
+        app: 'https://koichem.github.io/resonance_kun/',
+        gh: 'https://github.com/KoiChem/resonance_kun',
+        shots: [
+          ['assets/resonance-1.jpg', 'ベンゼン共鳴構造くんのケクレ構造表示'],
+          ['assets/resonance-2.jpg', 'ベンゼン共鳴構造くんの破線の円表記表示'],
+          ['assets/resonance-3.jpg', 'もう一方のケクレ構造'],
+          ['assets/resonance-4.jpg', '切替を速くした表示（40Hz）'],
+          ['assets/resonance-5.jpg', '円表記で速く切り替える表示'],
+          ['assets/resonance-6.jpg', 'もう一方のケクレ構造（40Hz）'],
+        ],
+      },
+      orgobingo: {
+        name: '有機化合物ビンゴ（オルゴビンゴ）',
+        desc: '高校化学の有機化合物を使ったビンゴ。化合物名と構造式の表示を切り替えられ、授業でそのまま読み上げ抽選に使えます。ビンゴセットの選択にも対応。',
+        tags: ['有機化学', 'ビンゴ', '授業'],
+        app: 'https://koichem.github.io/OrgoBingo/',
+        gh: 'https://github.com/KoiChem/OrgoBingo',
+        shots: [
+          ['assets/orgobingo-1.jpg', '有機化合物ビンゴのスタート画面'],
+          ['assets/orgobingo-2.jpg', '有機化合物ビンゴの抽選画面（化合物名）'],
+          ['assets/orgobingo-3.jpg', '有機化合物ビンゴの抽選画面（構造式）'],
+          ['assets/orgobingo-4.jpg', 'オルゴビンゴの設定（化合物リストの編集）'],
+          ['assets/orgobingo-5.jpg', 'ビンゴセットの選択'],
+          ['assets/orgobingo-6.jpg', '抽選を進めたところ'],
+        ],
+      },
+      elementbingo: {
+        name: '元素記号ビンゴ',
+        desc: '元素記号で遊ぶビンゴ。スタートすると元素が1つずつ大きく抽選表示され、履歴も残ります。表示は記号・番号付・元素名・英語名・番号に切り替え可能で、読み上げ音声にも対応。元素記号を覚える導入や復習に。',
+        tags: ['元素記号', 'ビンゴ', '授業'],
+        app: 'https://koichem.github.io/bingo_kun/',
+        gh: 'https://github.com/KoiChem/bingo_kun',
+        shots: [
+          ['assets/elementbingo-1.jpg', '元素記号ビンゴのスタート画面'],
+          ['assets/elementbingo-2.jpg', '元素記号ビンゴの抽選画面'],
+          ['assets/elementbingo-3.jpg', '元素記号ビンゴの抽選が進んだ画面'],
+          ['assets/elementbingo-4.jpg', '元素名モードの表示'],
+          ['assets/elementbingo-5.jpg', '番号付きモードの表示'],
+          ['assets/elementbingo-6.jpg', 'デッキ（出題データ）の設定'],
+        ],
+      },
+      sekigae: {
+        name: 'SekiGae（席替え）',
+        desc: '座席替えアプリ。名簿を登録して、市松・シャッフル・整列で座席を配置。教員視点／生徒視点の切り替え、座席内の表示レイアウト設定、印刷プレビューに対応します。データはブラウザ内に保存されます。',
+        tags: ['席替え', '学級経営', '印刷'],
+        app: 'https://koichem.github.io/SekiGae/',
+        gh: 'https://github.com/KoiChem/SekiGae',
+        shots: [
+          ['assets/sekigae-1.jpg', 'SekiGaeの座席表（サンプル）画面'],
+          ['assets/sekigae-2.jpg', 'SekiGaeの名簿管理画面'],
+          ['assets/sekigae-3.jpg', 'SekiGaeの使い方ガイド'],
+          ['assets/sekigae-4.jpg', 'SekiGaeの印刷プレビュー'],
+          ['assets/sekigae-5.jpg', '生徒視点の座席表'],
+          ['assets/sekigae-6.jpg', '使い方ガイドの続き'],
+        ],
+      },
+      copype: {
+        name: '化学式コピペくん',
+        desc: '化学式・反応式をWordで使えるリッチテキストに変換するツール。左にプレーンテキストで入力すると、右に下付き・上付きや矢印を整えたプレビューがその場で表示され、「Word用にコピー」で貼り付けられます。よく使う反応式はストックに登録でき、配色テーマも切り替えられます。',
+        tags: ['化学式', 'Word', '教材作成'],
+        app: 'https://koichem.github.io/copype_kun/',
+        gh: 'https://github.com/KoiChem/copype_kun',
+        shots: [
+          ['assets/copype-1.jpg', '化学式コピペくんのメイン画面（入力例とプレビュー）'],
+          ['assets/copype-2.jpg', 'Ca(OH)2と入力してプレビューが整形された画面'],
+          ['assets/copype-3.jpg', 'テーマをmatchaに切り替えた画面'],
+          ['assets/copype-4.jpg', 'ストックから錯イオンの式を入力したところ'],
+          ['assets/copype-5.jpg', 'HTMLソースの表示'],
+          ['assets/copype-6.jpg', 'テーマを変えた表示（sakura）'],
+        ],
+      },
+      pdfcrop: {
+        name: 'PDF Crop & Export',
+        desc: 'PDFを開いて、使いたい部分を枠で切り抜いて書き出すツール。テストやプリントの一部だけを切り取って、PDFやJPGで保存できます。全ページへの枠コピーや、タイル状レイアウトにも対応。',
+        tags: ['PDF', '切り抜き', '教材作成'],
+        app: 'https://koichem.github.io/PdfCrop/',
+        gh: 'https://github.com/KoiChem/PdfCrop',
+        shots: [
+          ['assets/pdfcrop-1.jpg', 'PDF Crop & Exportの初期画面'],
+          ['assets/pdfcrop-2.jpg', 'PDFを読み込んだ画面'],
+          ['assets/pdfcrop-3.jpg', '枠で切り抜く範囲を指定した画面'],
+          ['assets/pdfcrop-4.jpg', '出力プレビュー画面'],
+          ['assets/pdfcrop-5.jpg', '表示倍率を上げたところ'],
+          ['assets/pdfcrop-6.jpg', '出力プレビュー（A4タイル・縦）'],
+        ],
+      },
+    };
+
+    const main = document.getElementById('app-list');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbTitle = document.getElementById('lb-title');
+    let lbShots = [], lbIdx = 0, lbName = '';
+
+    function showLb() {
+      lbImg.src = lbShots[lbIdx][0];
+      lbImg.alt = lbShots[lbIdx][1];
+      lbTitle.textContent = `${lbName}（${lbIdx + 1} / ${lbShots.length}）`;
+    }
+    document.getElementById('lb-close').addEventListener('click', () => lb.close());
+    document.getElementById('lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + lbShots.length) % lbShots.length; showLb(); });
+    document.getElementById('lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % lbShots.length; showLb(); });
+    lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+
+    GROUPS.forEach((group, gi) => {
+      const section = document.createElement('section');
+      section.className = 'group';
+      section.innerHTML = `<div class="group-heading"><span class="group-number">${String(gi + 1).padStart(2, '0')}</span><h2>${group.title}</h2></div>`;
+      const ul = document.createElement('ul');
+      ul.className = 'app-grid';
+
+      group.apps.forEach(key => {
+        const app = APPS[key];
+        const li = document.createElement('li');
+        li.className = 'card';
+
+        const mainBtn = document.createElement('button');
+        mainBtn.type = 'button';
+        mainBtn.className = 'card-main';
+        mainBtn.setAttribute('aria-label', `${app.name}の画面を大きく表示`);
+        const mainImg = document.createElement('img');
+        mainImg.src = app.shots[0][0];
+        mainImg.alt = app.shots[0][1];
+        mainImg.loading = 'lazy';
+        mainBtn.appendChild(mainImg);
+        mainBtn.addEventListener('click', () => {
+          lbShots = app.shots; lbName = app.name;
+          lbIdx = Number(mainBtn.dataset.idx || 0);
+          showLb(); lb.showModal();
+        });
+        li.appendChild(mainBtn);
+
+        const thumbs = document.createElement('ul');
+        thumbs.className = 'thumbs';
+        app.shots.forEach(([src, alt], i) => {
+          const t = document.createElement('li');
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', `${app.name}の写真${i + 1}を表示`);
+          b.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+          const im = document.createElement('img');
+          im.src = src; im.alt = alt; im.loading = 'lazy';
+          b.appendChild(im);
+          b.addEventListener('click', () => {
+            mainImg.src = src; mainImg.alt = alt;
+            mainBtn.dataset.idx = i;
+            thumbs.querySelectorAll('button').forEach(x => x.setAttribute('aria-current', 'false'));
+            b.setAttribute('aria-current', 'true');
+          });
+          t.appendChild(b);
+          thumbs.appendChild(t);
+        });
+        li.appendChild(thumbs);
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        body.innerHTML = `
+          <h3>${app.name}</h3>
+          <p class="desc">${app.desc}</p>
+          <ul class="tags">${app.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+          <div class="card-links">
+            <a class="btn-open" href="${app.app}" target="_blank" rel="noopener">アプリを開く</a>
+            <a class="btn-gh" href="${app.gh}" target="_blank" rel="noopener">GitHub</a>
+          </div>`;
+        li.appendChild(body);
+        ul.appendChild(li);
+      });
+
+      section.appendChild(ul);
+      main.appendChild(section);
+    });
+  </script>
+</body>
+</html>
