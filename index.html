@@ -223,9 +223,10 @@
       },
       sekigae: {
         name: 'SekiGae（席替え）',
-        desc: '座席替えアプリ。名簿を登録して、市松・シャッフル・整列で座席を配置。教員視点／生徒視点の切り替え、座席内の表示レイアウト設定、印刷プレビューに対応します。データはブラウザ内に保存されます。',
+        desc: '座席替えアプリ。名簿を登録して、市松・シャッフル・整列で座席を配置。教員視点／生徒視点の切り替え、座席内の表示レイアウト設定、印刷プレビューに対応します。名簿データは使用しているパソコンのブラウザ内に保存され、外部へ送信されることはありません。',
         tags: ['席替え', '学級経営', '印刷'],
         app: 'https://koichem.github.io/SekiGae/',
+        sample: 'https://koichem.github.io/SekiGae/sample.html',
         gh: 'https://github.com/KoiChem/SekiGae',
         shots: [
           ['assets/sekigae-1.jpg', 'SekiGaeの座席表（サンプル）画面'],
@@ -342,6 +343,7 @@
           <ul class="tags">${app.tags.map(t => `<li>${t}</li>`).join('')}</ul>
           <div class="card-links">
             <a class="btn-open" href="${app.app}" target="_blank" rel="noopener">アプリを開く</a>
+            ${app.sample ? `<a class="btn-gh" href="${app.sample}" target="_blank" rel="noopener">サンプル版</a>` : ''}
             <a class="btn-gh" href="${app.gh}" target="_blank" rel="noopener">GitHub</a>
           </div>`;
         li.appendChild(body);
