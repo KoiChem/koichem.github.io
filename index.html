@@ -112,7 +112,7 @@
     const GROUPS = [
       { title: '化学を学ぶ', apps: ['alkane', 'ionic', 'genkai', 'stereo', 'resonance', 'orgobingo', 'orgorush', 'elementbingo'] },
       { title: '授業を支える', apps: ['sekigae'] },
-      { title: '化学・教材ツール', apps: ['copype', 'pdfcrop'] },
+      { title: '化学・教材ツール', apps: ['copype', 'pdfcrop', 'pdfboard'] },
     ];
 
     const APPS = {
@@ -271,6 +271,18 @@
           ['assets/pdfcrop-4.jpg', '出力プレビュー画面'],
           ['assets/pdfcrop-5.jpg', '表示倍率を上げたところ'],
           ['assets/pdfcrop-6.jpg', '出力プレビュー（A4タイル・縦）'],
+        ],
+      },
+      pdfboard: {
+        name: 'PDFBoard',
+        desc: 'PDFのページをサムネイルで編集するアプリ。ドラッグ＆ドロップで並べ替え、回転・複製・削除、別のPDFの追加、空白ページの挿入ができます。ページの抽出や、CSVで範囲と名前を指定しての分割保存にも対応。PDFはブラウザの中だけで処理され、外部に送信されません。',
+        tags: ['PDF', 'ページ編集', '教材作成'],
+        app: 'https://koichem.github.io/PDFBoard/',
+        shots: [
+          ['assets/pdfboard-1.jpg', 'PDFBoardのサムネイル一覧画面'],
+          ['assets/pdfboard-2.jpg', '右クリックメニュー（回転・複製・削除など）'],
+          ['assets/pdfboard-3.jpg', 'PDFBoardの初期画面'],
+          ['assets/pdfboard-4.jpg', 'CSV分割保存の確認ダイアログ'],
         ],
       },
     };
